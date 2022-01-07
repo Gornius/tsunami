@@ -1,0 +1,80 @@
+@startuml
+
+class Category {
+    +string title
+    +string id
+}
+
+class Trend {
+    +int articlesCount
+    +int videosCount
+    +Date date
+}
+
+interface CategoryService {
+    +Category fetchCategoryById(string id)
+}
+
+YoutubeCategoryService --|> CategoryService
+
+interface CategoryRepository {
+    +void createCategory(Category category)
+    +List<Category> getAllCategories()
+}
+
+CategoryService --* Category
+
+class Video {
+    +List<string> tags
+    +string categoryId
+}
+
+interface VideoRepository {
+    +List<Video> getVideos()
+}
+
+YoutubePopularVideosRepository --|> VideoRepository
+
+interface NewsRepository {
+    +int getArticlesCount(List<string> keywords)
+}
+
+GNewsRepository --|> NewsRepository
+
+class DataService {
+    +void populateCategories()
+    +void populateTags()
+}
+
+DataService --* TagRepository
+DataService --* NewsRepository
+DataService --* VideoRepository
+DataService --* CategoryRepository
+DataService --* CategoryService
+
+class Tag {
+    +string name
+}
+
+interface TagRepository {
+    +void createTag(Tag tag)
+    +List<Tag> getAllTags()
+}
+
+TagRepository --* Tag
+
+VideoRepository --* Video
+CategoryRepository --* Category
+
+interface TrendRepository {
+    +void addCategoryTrend(string categoryId, Trend trend)
+    +void addTagTrend(string tagTitle, Trend trend)
+}
+
+TrendRepository --* Trend
+
+LocalRepository --|> TrendRepository
+LocalRepository --|> TagRepository
+LocalRepository --|> CategoryRepository
+
+@enduml
