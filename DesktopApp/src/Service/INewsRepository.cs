@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace DesktopApp
 {
-    public interface NewsRepository
+    public interface INewsRepository
     {
         int GetArticlesCount(List<string> keywords);
     }

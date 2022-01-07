@@ -4,11 +4,11 @@ namespace DesktopApp
 {
     public class DataService
     {
-        private readonly VideoRepository _videoRepository;
-        private readonly CategoryService _categoryService;
-        private readonly CategoryRepository _categoryRepository;
+        private readonly IVideoRepository _videoRepository;
+        private readonly ICategoryService _categoryService;
+        private readonly ICategoryRepository _categoryRepository;
 
-        public DataService(VideoRepository videoRepository, CategoryService categoryService, CategoryRepository categoryRepository)
+        public DataService(IVideoRepository videoRepository, ICategoryService categoryService, ICategoryRepository categoryRepository)
         {
             _videoRepository = videoRepository;
             _categoryService = categoryService;

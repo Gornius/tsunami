@@ -1,6 +1,6 @@
 namespace DesktopApp
 {
-    public interface CategoryService
+    public interface ICategoryService
     {
         Category FetchCategoryById(string id);
     }

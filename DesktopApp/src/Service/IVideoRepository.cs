@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace DesktopApp
 {
-    public interface VideoRepository
+    public interface IVideoRepository
     {
         List<Video> GetVideos();
     }

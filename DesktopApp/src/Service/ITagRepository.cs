@@ -1,6 +1,6 @@
 namespace DesktopApp
 {
-    public interface TagRepository
+    public interface ITagRepository
     {
         void CreateTag(Tag tag);
     }
