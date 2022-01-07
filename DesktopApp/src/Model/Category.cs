@@ -2,7 +2,13 @@ namespace DesktopApp
 {
     public class Category
     {
-        private string Title { get; set; }
-        private string Id { get; set; }
+        public string Title;
+        public string Id;
+
+        public Category(string id, string title)
+        {
+            Id = id;
+            Title = title;
+        }
     }
 }
