@@ -1,15 +1,24 @@
 Table categories {
-  name varchar(255)
   id varchar(11) [pk]
-  videos_count int
-  articles_count int
-  count_date date
+  title varchar(255)
 }
 
-
 table tags {
-  name varchar(255) [pk]
-  videos_count int
+  title varchar(255) [pk]
+}
+
+table categories_trend {
+  id int [pk, increment]
+  category_id varchar(11) [ref: > categories.id]
   articles_count int
-  count_date date
+  videos_count int
+  trend_time time
+}
+
+table tags_trend {
+  id int [pk, increment]
+  tag_title varchar(255) [ref: > tags.title]
+  articles_count int
+  videos_count int
+  trend_time time
 }
