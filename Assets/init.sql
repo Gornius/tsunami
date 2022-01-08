@@ -2,16 +2,16 @@
 -- Database: MySQL
 -- Generated at: 2022-01-08T20:29:00.438Z
 
-CREATE TABLE `categories` (
+CREATE TABLE IF NOT EXISTS `categories` (
   `id` varchar(11) PRIMARY KEY,
   `title` varchar(255)
 );
 
-CREATE TABLE `tags` (
+CREATE TABLE IF NOT EXISTS `tags` (
   `title` varchar(255) PRIMARY KEY
 );
 
-CREATE TABLE `categories_trend` (
+CREATE TABLE IF NOT EXISTS `categories_trend` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `category_id` varchar(11),
   `articles_count` int,
@@ -19,7 +19,7 @@ CREATE TABLE `categories_trend` (
   `trend_date` date
 );
 
-CREATE TABLE `tags_trend` (
+CREATE TABLE IF NOT EXISTS `tags_trend` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `tag_title` varchar(255),
   `articles_count` int,

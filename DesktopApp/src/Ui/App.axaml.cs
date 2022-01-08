@@ -18,7 +18,10 @@ namespace DesktopApp.Ui
             var container = new DependencyInjectionContainer();
             var dataService = container.Get<DataService>();
             var database = container.Get<Database>();
+            var localRepository = container.Get<LocalRepository>();
+            
             database.OpenConnection();
+            localRepository.Initialize();
             dataService.PopulateCategories();
             database.CloseConnection();
 

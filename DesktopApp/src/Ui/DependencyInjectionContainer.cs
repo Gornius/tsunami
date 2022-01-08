@@ -22,8 +22,9 @@ namespace DesktopApp.Ui
             _factories[typeof(IVideoRepository)] = () => new YoutubePopularVideosRepository();
             _factories[typeof(ICategoryService)] = () => new YoutubeCategoryService();
             _factories[typeof(INewsRepository)] = () => new RandomNewsService(40, 12000);
-            _factories[typeof(ITrendRepository)] = () => new LocalRepository(Get<Database>());
-            _factories[typeof(ICategoryRepository)] = () => new LocalRepository(Get<Database>());
+            _factories[typeof(LocalRepository)] = () => new LocalRepository(Get<Database>());
+            _factories[typeof(ITrendRepository)] = Get<LocalRepository>;
+            _factories[typeof(ICategoryRepository)] = Get<LocalRepository>;
             _factories[typeof(DataService)] = () => new DataService(
                 Get<IVideoRepository>(),
                 Get<ICategoryService>(),
