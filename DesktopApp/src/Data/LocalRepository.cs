@@ -38,7 +38,14 @@ namespace DesktopApp.Data
         {
             _database.Execute(
                 "INSERT INTO categories_trend(category_id, articles_count, videos_count, trend_time) " +
-                $"VALUES ('{categoryId}', {trend.ArticlesCount}, {trend.VideosCount}, {trend.Date})"
+                "VALUES (?categoryId, ?articlesCount, ?videosCount, ?trendDate)",
+                new[]
+                {
+                    new MySqlParameter("categoryId", categoryId),
+                    new MySqlParameter("articlesCount", trend.ArticlesCount),
+                    new MySqlParameter("videosCount", trend.VideosCount),
+                    new MySqlParameter("trendDate", trend.Date)
+                }
             );
         }
 

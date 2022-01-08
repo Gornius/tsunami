@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using DesktopApp.Service;
 using MySqlConnector;
 
@@ -58,13 +59,17 @@ namespace DesktopApp.Data
             };
         }
 
-        public void Execute(string query)
+        public void Execute(string query, IEnumerable<MySqlParameter>? parameters = null)
         {
-            MySqlCommand commandDatabase = BuildCommand(query);
-
+            MySqlCommand command = BuildCommand(query);
+            
+            if (parameters != null)
+                foreach (var param in parameters)
+                    command.Parameters.Add(param);
+            
             try
             {
-                commandDatabase.ExecuteNonQuery();
+                command.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
@@ -75,10 +80,10 @@ namespace DesktopApp.Data
         public List<T> RetrieveData<T>(string query, Func<IDataRecord, T> parse, IEnumerable<MySqlParameter> parameters)
         {
             MySqlCommand command = BuildCommand(query);
-
+            
             foreach (var param in parameters)
                 command.Parameters.Add(param);
-
+            
             var results = new List<T>();
 
             try
