@@ -12,7 +12,7 @@ table categories_trend {
   category_id varchar(11) [ref: > categories.id]
   articles_count int
   videos_count int
-  trend_time time
+  trend_date date
 }
 
 table tags_trend {
@@ -20,5 +20,5 @@ table tags_trend {
   tag_title varchar(255) [ref: > tags.title]
   articles_count int
   videos_count int
-  trend_time time
+  trend_date date
 }

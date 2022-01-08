@@ -37,7 +37,7 @@ namespace DesktopApp.Data
         public void AddCategoryTrend(string categoryId, Trend trend)
         {
             _database.Execute(
-                "INSERT INTO categories_trend(category_id, articles_count, videos_count, trend_time) " +
+                "INSERT INTO categories_trend(category_id, articles_count, videos_count, trend_date) " +
                 "VALUES (?categoryId, ?articlesCount, ?videosCount, ?trendDate)",
                 new[]
                 {
