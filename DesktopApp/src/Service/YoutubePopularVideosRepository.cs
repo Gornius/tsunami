@@ -22,6 +22,8 @@ namespace DesktopApp.Service
             var results = request.Execute();
 
 
+            
+            // TODO: Pagination
             var videoList = new List<Video>();
             foreach (var video in results.Items)
             {
