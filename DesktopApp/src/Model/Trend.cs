@@ -1,6 +1,6 @@
 using System;
 
-namespace DesktopApp
+namespace DesktopApp.Model
 {
     public class Trend
     {

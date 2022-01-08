@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DesktopApp.Model;
 using Google.Apis.Services;
 using Google.Apis.YouTube.v3;
 using Newtonsoft.Json;

@@ -1,4 +1,6 @@
-namespace DesktopApp
+using DesktopApp.Model;
+
+namespace DesktopApp.Service
 {
     public interface ICategoryRepository
     {

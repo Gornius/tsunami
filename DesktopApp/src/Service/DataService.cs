@@ -1,6 +1,6 @@
 using System.Linq;
 
-namespace DesktopApp
+namespace DesktopApp.Service
 {
     public class DataService
     {

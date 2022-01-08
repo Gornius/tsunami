@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace DesktopApp
+namespace DesktopApp.Model
 {
     public class Video
     {

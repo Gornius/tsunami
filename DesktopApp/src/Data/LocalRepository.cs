@@ -1,5 +1,7 @@
 using System.Data;
 using System.Linq;
+using DesktopApp.Model;
+using DesktopApp.Service;
 using MySqlConnector;
 
 namespace DesktopApp.Data

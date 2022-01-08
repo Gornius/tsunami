@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using DesktopApp.Model;
 
-namespace DesktopApp
+namespace DesktopApp.Service
 {
     public interface IVideoRepository
     {
