@@ -15,12 +15,12 @@ namespace DesktopApp.Service
             _categoryRepository = categoryRepository;
         }
 
-        void PopulateCategories()
+        public void PopulateCategories()
         {
             var nonExistingCategories = _videoRepository.GetVideos()
                 .Select(video => video.CategoryId)
                 .Distinct()
-                .Where(categoryId => _categoryRepository.CategoryExists(categoryId));
+                .Where(categoryId => !_categoryRepository.CategoryExists(categoryId));
 
             nonExistingCategories
                 .Select(categoryId => _categoryService.FetchCategoryById(categoryId))

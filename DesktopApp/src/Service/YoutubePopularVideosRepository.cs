@@ -29,7 +29,7 @@ namespace DesktopApp.Service
             {
                 videoList.Add(new Video
                 {
-                    CategoryId = video.Id,
+                    CategoryId = video.Snippet.CategoryId,
                     Tags = video.Snippet.Tags != null ? new List<string>(video.Snippet.Tags) : new List<string>(),
                 });
             }
