@@ -4,7 +4,7 @@ namespace DesktopApp.Model
 {
     public class Video
     {
-        public List<string> Tags;
-        public string CategoryId;
+        public IEnumerable<string> Tags { get; init; } = new List<string>();
+        public string CategoryId { get; init; } = "";
     }
 }

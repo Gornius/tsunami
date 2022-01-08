@@ -4,8 +4,8 @@ namespace DesktopApp.Model
 {
     public class Trend
     {
-        private int ArticlesCount { get; set; }
-        private int VideosCount { get; set; }
-        private DateTime Date { get; set; }
+        public int ArticlesCount { get; set; }
+        public int VideosCount { get; set; }
+        public DateTime Date { get; set; }
     }
 }

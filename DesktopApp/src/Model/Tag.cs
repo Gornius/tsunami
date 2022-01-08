@@ -2,6 +2,6 @@ namespace DesktopApp.Model
 {
     public class Tag
     {
-        private string Name { get; set; }
+        public string Name { get; init; } = "";
     }
 }
