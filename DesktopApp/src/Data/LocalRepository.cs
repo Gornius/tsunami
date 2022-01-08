@@ -6,7 +6,7 @@ using MySqlConnector;
 
 namespace DesktopApp.Data
 {
-    public class LocalRepository : ICategoryRepository
+    public class LocalRepository : ICategoryRepository, ITrendRepository
     {
         private readonly Database _database;
 
@@ -27,22 +27,35 @@ namespace DesktopApp.Data
             return _database.RetrieveData(
                 "SELECT EXISTS (SELECT * FROM categories WHERE id = ?categoryId)",
                 ParseCategoryExistsRecord,
-                new []
+                new[]
                 {
                     new MySqlParameter("categoryId", categoryId)
                 }
             ).First();
         }
 
-        private static bool ParseCategoryExistsRecord(IDataRecord record)
+        public void AddCategoryTrend(string categoryId, Trend trend)
         {
-            return record.GetBoolean(0);
+            _database.Execute(
+                "INSERT INTO categories_trend(category_id, articles_count, videos_count, trend_time) " +
+                $"VALUES ('{categoryId}', {trend.ArticlesCount}, {trend.VideosCount}, {trend.Date})"
+            );
+        }
+
+        public void AddTagTrend(string tagTitle, Trend trend)
+        {
+            throw new System.NotImplementedException();
         }
 
         public void Initialize()
         {
             var initializationSql = System.IO.File.ReadAllText(@"init.sql");
             _database.Execute(initializationSql);
+        }
+
+        private static bool ParseCategoryExistsRecord(IDataRecord record)
+        {
+            return record.GetBoolean(0);
         }
     }
 }
