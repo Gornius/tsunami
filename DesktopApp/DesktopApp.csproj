@@ -21,4 +21,14 @@
         </Content>
         <PackageReference Include="Google.Apis.YouTube.v3" Version="1.55.0.2449" />
     </ItemGroup>
+    <ItemGroup>
+      <Compile Update="src\App\Ui\App.axaml.cs">
+        <DependentUpon>App.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="src\App\Ui\MainWindow.axaml.cs">
+        <DependentUpon>MainWindow.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
 </Project>

@@ -2,7 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace DesktopApp
+namespace DesktopApp.Ui
 {
     public partial class MainWindow : Window
     {
