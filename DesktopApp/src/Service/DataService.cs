@@ -64,7 +64,7 @@ namespace DesktopApp.Service
         
         private static Dictionary<string, int> IncrementItemOccurrence(Dictionary<string, int> itemsToOccurrences, string item)
         {
-            if (itemsToOccurrences.ContainsKey(item))
+            if (!itemsToOccurrences.ContainsKey(item))
                 itemsToOccurrences.Add(item, 0);
             else
                 itemsToOccurrences[item] += 1;
