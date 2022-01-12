@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DesktopApp.Data;
 using DesktopApp.News;
 using DesktopApp.Service;
+using DesktopApp.Ui.Presenter;
 using DesktopApp.Util;
 
 namespace DesktopApp.Ui
@@ -32,6 +33,8 @@ namespace DesktopApp.Ui
                 Get<INewsRepository>(),
                 Get<ITrendRepository>()
             );
+            _factories[typeof(CategoriesPopularityPresenter)] =
+                () => new CategoriesPopularityPresenter(Get<ITrendRepository>());
 
             // Singletons
             var database = new Database(Get<IErrorHandler>());

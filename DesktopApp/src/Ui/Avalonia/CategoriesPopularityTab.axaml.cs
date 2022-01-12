@@ -21,9 +21,9 @@ namespace DesktopApp.Ui.Avalonia
             _categoriesDataGrid.IsReadOnly = true;
         }
 
-        public IPopularityPresenter PopularityPresenter
+        public void Attach(IPopularityPresenter presenter)
         {
-            set => _popularityPresenter = value;
+            _popularityPresenter = presenter;
         }
 
         private void InitializeComponent()

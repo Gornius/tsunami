@@ -7,7 +7,21 @@ namespace DesktopApp.Ui.Presenter
 {
     public class CategoriesPopularityPresenter : IPopularityPresenter
     {
-        private readonly ITrendRepository _trendRepository = new DependencyInjectionContainer().Get<ITrendRepository>();
+        private readonly ITrendRepository _trendRepository;
+        private ICategoriesPopularityView? _view;
+
+        public CategoriesPopularityPresenter(ITrendRepository trendRepository)
+        {
+            _trendRepository = trendRepository;
+        }
+
+        public void Attach(ICategoriesPopularityView view)
+        {
+            _view = view;
+            var categories = _trendRepository.FindAllCategoryTrends();
+            _view.ShowCategories(categories);
+        }
+
         public void ExportTrendsToXml()
         {
             throw new System.NotImplementedException();

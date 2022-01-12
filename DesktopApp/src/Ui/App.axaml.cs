@@ -3,6 +3,8 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using DesktopApp.Data;
 using DesktopApp.Service;
+using DesktopApp.Ui.Avalonia;
+using DesktopApp.Ui.Presenter;
 
 namespace DesktopApp.Ui
 {
@@ -26,7 +28,11 @@ namespace DesktopApp.Ui
             {
                 var mainWindow = new MainWindow();
                 desktop.MainWindow = mainWindow;
-                mainWindow.TrendRepository = localRepository;
+                var presenter = container.Get<CategoriesPopularityPresenter>();
+                var view = mainWindow.GetCategoriesPopularityTab();
+            
+                view.Attach(presenter);
+                presenter.Attach(view);
             }
 
             base.OnFrameworkInitializationCompleted();
