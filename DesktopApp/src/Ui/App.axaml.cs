@@ -16,18 +16,17 @@ namespace DesktopApp.Ui
         public override void OnFrameworkInitializationCompleted()
         {
             var container = new DependencyInjectionContainer();
-            var dataService = container.Get<DataService>();
             var database = container.Get<Database>();
             var localRepository = container.Get<LocalRepository>();
             
             database.OpenConnection();
             localRepository.Initialize();
-            dataService.PopulateTags();
-            database.CloseConnection();
 
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                desktop.MainWindow = new MainWindow();
+                var mainWindow = new MainWindow();
+                desktop.MainWindow = mainWindow;
+                mainWindow.TrendRepository = localRepository;
             }
 
             base.OnFrameworkInitializationCompleted();
