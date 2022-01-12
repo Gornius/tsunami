@@ -5,6 +5,7 @@
       <map>
         <entry key="DesktopApp/App.axaml" value="DesktopApp/DesktopApp.csproj" />
         <entry key="DesktopApp/src/App/App.axaml" value="DesktopApp/DesktopApp.csproj" />
+        <entry key="DesktopApp/src/Ui/App.axaml" value="DesktopApp/DesktopApp.csproj" />
         <entry key="DesktopApp/src/Ui/MainWindow.axaml" value="DesktopApp/DesktopApp.csproj" />
       </map>
     </option>

@@ -22,7 +22,7 @@ namespace DesktopApp.Ui
             
             database.OpenConnection();
             localRepository.Initialize();
-            dataService.PopulateCategories();
+            dataService.PopulateTags();
             database.CloseConnection();
 
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)

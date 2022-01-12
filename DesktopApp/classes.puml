@@ -77,4 +77,27 @@ LocalRepository --|> TrendRepository
 LocalRepository --|> TagRepository
 LocalRepository --|> CategoryRepository
 
+interface CategoriesPopularityView {
+    void ShowCategories(List<CategoryTrend> trends)
+}
+
+interface TagsPopularityView {
+    void ShowTags(List<TagTrend> trends)
+}
+
+interface PopularityPresenter {
+    void ExportCategoriesToXml()
+    void ExportCategoriesToJson()
+    void ExportCategoriesToSql()
+}
+
+MainWindow --* CategoriesPopularityTab
+MainWindow --* TagsPopularityTab
+CategoriesPopularityTab --|> CategoriesPopularityView
+TagsPopularityTab --|> TagsPopularityView
+TagsPopularityPresenter --|> PopularityPresenter
+CategoriesPopularityPresenter --|> PopularityPresenter
+CategoriesPopularityView --* PopularityPresenter
+TagsPopularityView --* PopularityPresenter
+
 @enduml

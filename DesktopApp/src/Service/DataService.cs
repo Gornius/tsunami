@@ -48,18 +48,50 @@ namespace DesktopApp.Service
                 .Select(category => _newsRepository.GetArticlesCount(new List<string>(new[] {category.Title})));
 
             categoryIdsToCounts.Zip(articlesCounts)
+                .Select(MakeTrend)
                 .ToList()
                 .ForEach(entry =>
                 {
-                    var (idToVideosCount, articlesCount) = entry;
-                    var (id, videosCount) = idToVideosCount;
-                    var trend = new Trend {
-                        ArticlesCount = articlesCount,
-                        VideosCount = videosCount,
-                        Date = DateTime.Today
-                    };
+                    var (id, trend) = entry;
                     _trendRepository.AddCategoryTrend(id, trend);
                 });
+        }
+
+        public void PopulateTags()
+        {
+            var tags = _videoRepository.GetVideos()
+                .Select(video => video.Tags)
+                .SelectMany(list => list)
+                .ToList();
+            
+            var tagsToVideosCounts = tags
+                .Aggregate(new Dictionary<string, int>(), IncrementItemOccurrence);
+            
+            var articlesCounts = tags
+                .Distinct()
+                .Select(tag => _newsRepository.GetArticlesCount(new List<string>(new[] {tag})));
+            
+            tagsToVideosCounts.Zip(articlesCounts)
+                .Select(MakeTrend)
+                .ToList()
+                .ForEach(entry =>
+                {
+                    var (tag, trend) = entry;
+                    _trendRepository.AddTagTrend(tag, trend);
+                });
+        }
+
+        private static (string, Trend) MakeTrend((KeyValuePair<string, int>, int) entry)
+        {
+            var (tagToVideosCount, articlesCount) = entry;
+            var (tag, videosCount) = tagToVideosCount;
+            var trend = new Trend {
+                ArticlesCount = articlesCount,
+                VideosCount = videosCount,
+                Date = DateTime.Today
+            };
+
+            return (tag, trend);
         }
         
         private static Dictionary<string, int> IncrementItemOccurrence(Dictionary<string, int> itemsToOccurrences, string item)
