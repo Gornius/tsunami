@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using DesktopApp.Model;
@@ -54,6 +55,13 @@ namespace DesktopApp.Data
             throw new System.NotImplementedException();
         }
 
+        public List<CategoryTrend> FindAllCategoryTrends()
+        {
+            const string query = "select category_id, title, articles_count, videos_count, trend_date from categories inner join categories_trend ct on categories.id = ct.category_id;";
+
+            return _database.RetrieveData(query, ParseCategoryTrend, new List<MySqlParameter>());
+        }
+
         public void Initialize()
         {
             var initializationSql = System.IO.File.ReadAllText(@"init.sql");
@@ -63,6 +71,24 @@ namespace DesktopApp.Data
         private static bool ParseCategoryExistsRecord(IDataRecord record)
         {
             return record.GetBoolean(0);
+        }
+
+        private static CategoryTrend ParseCategoryTrend(IDataRecord record)
+        {
+            return new CategoryTrend
+            {
+                Category = new Category
+                {
+                    Id = record.GetString(0),
+                    Title = record.GetString(1)
+                },
+                Trend = new Trend
+                {
+                    ArticlesCount = record.GetInt32(2),
+                    VideosCount = record.GetInt32(3),
+                    Date = record.GetDateTime(4)
+                }
+            };
         }
     }
 }
