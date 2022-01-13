@@ -34,7 +34,7 @@ namespace DesktopApp.Ui
                 Get<ITrendRepository>()
             );
             _factories[typeof(CategoriesPopularityPresenter)] =
-                () => new CategoriesPopularityPresenter(Get<ITrendRepository>());
+                () => new CategoriesPopularityPresenter(Get<ITrendRepository>(), Get<DataService>());
 
             // Singletons
             var database = new Database(Get<IErrorHandler>());

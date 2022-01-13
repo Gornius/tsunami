@@ -8,11 +8,15 @@ namespace DesktopApp.Ui.Presenter
     public class CategoriesPopularityPresenter : IPopularityPresenter
     {
         private readonly ITrendRepository _trendRepository;
+        private readonly DataService _dataService;
+        
+        
         private ICategoriesPopularityView? _view;
 
-        public CategoriesPopularityPresenter(ITrendRepository trendRepository)
+        public CategoriesPopularityPresenter(ITrendRepository trendRepository, DataService dataService)
         {
             _trendRepository = trendRepository;
+            _dataService = dataService;
         }
 
         public void Attach(ICategoriesPopularityView view)
@@ -46,6 +50,12 @@ namespace DesktopApp.Ui.Presenter
         public void ExportTrendsToSql()
         {
             throw new System.NotImplementedException();
+        }
+
+        public void UpdateTrends()
+        {
+            _dataService.PopulateCategories();
+            _dataService.PopulateTags();
         }
     }
 }

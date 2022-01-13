@@ -5,5 +5,6 @@ namespace DesktopApp.Ui.View
         void ExportTrendsToXml();
         void ExportTrendsToJson();
         void ExportTrendsToSql();
+        void UpdateTrends();
     }
 }
