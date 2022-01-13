@@ -57,7 +57,16 @@ namespace DesktopApp.Data
 
         public void AddTagTrend(string tagTitle, Trend trend)
         {
-            throw new System.NotImplementedException();
+            _database.Execute(
+                "insert into tags_trend (tag_title, articles_count, videos_count, trend_date) values (?tagTitle, ?articlesCount, ?videosCount, ?trendDate)",
+                new[]
+                {
+                    new MySqlParameter("tagTitle", tagTitle),
+                    new MySqlParameter("articlesCount", trend.ArticlesCount),
+                    new MySqlParameter("videosCount", trend.VideosCount),
+                    new MySqlParameter("trendDate", trend.Date)
+                }
+            );
         }
 
         public void ReplaceCategoryTrends(Dictionary<string, Trend> categoryIdToTrend)
