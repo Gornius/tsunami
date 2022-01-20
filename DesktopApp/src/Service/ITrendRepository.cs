@@ -7,6 +7,7 @@ namespace DesktopApp.Service
     {
         void AddCategoryTrend(string categoryId, Trend trend);
         void AddTagTrend(string tagTitle, Trend trend);
+        void ReplaceCategoryTrends(Dictionary<string, Trend> categoryIdToTrend);
         List<CategoryTrend> FindAllCategoryTrends();
     }
 }

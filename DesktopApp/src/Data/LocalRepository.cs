@@ -55,6 +55,11 @@ namespace DesktopApp.Data
             throw new System.NotImplementedException();
         }
 
+        public void ReplaceCategoryTrends(Dictionary<string, Trend> categoryIdToTrend)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public List<CategoryTrend> FindAllCategoryTrends()
         {
             const string query = "select category_id, title, articles_count, videos_count, trend_date from categories inner join categories_trend ct on categories.id = ct.category_id;";
