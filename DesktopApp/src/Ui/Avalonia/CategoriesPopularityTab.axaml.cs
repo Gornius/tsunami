@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using Avalonia.VisualTree;
 using DesktopApp.Model;
+using DesktopApp.Service;
 using DesktopApp.Ui.View;
 
 namespace DesktopApp.Ui.Avalonia
@@ -13,7 +16,13 @@ namespace DesktopApp.Ui.Avalonia
     {
         private readonly DataGrid _categoriesDataGrid;
         private IPopularityPresenter? _popularityPresenter;
-        
+        private IErrorHandler? _errorHandler;
+
+        public IErrorHandler ErrorHandler
+        {
+            set => _errorHandler = value;
+        }
+
         public CategoriesPopularityTab()
         {
             InitializeComponent();
@@ -57,6 +66,39 @@ namespace DesktopApp.Ui.Avalonia
         private void ExportSql_OnClick(object? sender, RoutedEventArgs e)
         {
             RequirePresenter().ExportCategoriesToCsv();
+        }
+
+        private async Task<string> SelectFile(string extension)
+        {
+            var dialog = new OpenFileDialog();
+            dialog.Filters.Add(new FileDialogFilter {Name = "Text", Extensions = {extension}});
+            dialog.AllowMultiple = true;
+
+            var window = this.GetVisualRoot() as Window;
+            if (window == null)
+            {
+                _errorHandler?.OnError("No window attached!");
+                return "";
+            }
+
+            var result = await dialog.ShowAsync(window);
+            if (result == null)
+            {
+                _errorHandler?.OnError("Failed to select file");
+                return "";
+            }
+
+            var path = result[0];
+            return path;
+        }
+
+        private void ImportCategories_OnClick(object? sender, RoutedEventArgs e)
+        {
+            Task.Run(async () =>
+            {
+                var path = await SelectFile("csv");
+                RequirePresenter().ImportCategoriesFromCsv(path);
+            });
         }
     }
 }

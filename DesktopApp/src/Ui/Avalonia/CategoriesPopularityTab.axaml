@@ -10,6 +10,7 @@
             <Button Name="ExportJson" Click="ExportJson_OnClick">Export to JSON</Button>
             <Button Name="ExportXml" Click="ExportXml_OnClick">Export to XML</Button>
             <Button Name="ExportSql" Click="ExportSql_OnClick">Export to SQL</Button>
+            <Button Name="ImportCategories" Click="ImportCategories_OnClick">Import categories definitions</Button>
         </StackPanel>
     </Grid>
 </UserControl>
