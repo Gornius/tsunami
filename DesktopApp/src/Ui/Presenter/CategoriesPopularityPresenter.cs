@@ -29,6 +29,7 @@ namespace DesktopApp.Ui.Presenter
         public void ExportTrendsToXml()
         {
             throw new System.NotImplementedException();
+            
         }
 
         public void ExportTrendsToJson()
