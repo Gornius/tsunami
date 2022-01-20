@@ -4,7 +4,10 @@ namespace DesktopApp.Ui.View
     {
         void ExportTrendsToXml();
         void ExportTrendsToJson();
-        void ExportTrendsToSql();
+        void ExportCategoriesToCsv();
         void UpdateTrends();
+        void ImportTrendsFromXml();
+        void ImportTrendsFromJson();
+        void ImportCategoriesFromCsv();
     }
 }

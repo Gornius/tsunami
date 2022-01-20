@@ -48,7 +48,7 @@ namespace DesktopApp.Ui.Presenter
             fs.Close();
         }
 
-        public void ExportTrendsToSql()
+        public void ExportCategoriesToCsv()
         {
             throw new System.NotImplementedException();
         }
@@ -57,6 +57,21 @@ namespace DesktopApp.Ui.Presenter
         {
             _dataService.PopulateCategories();
             _dataService.PopulateTags();
+        }
+
+        public void ImportTrendsFromXml()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void ImportTrendsFromJson()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void ImportCategoriesFromCsv()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

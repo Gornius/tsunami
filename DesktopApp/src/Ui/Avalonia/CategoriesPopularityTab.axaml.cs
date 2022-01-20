@@ -56,7 +56,7 @@ namespace DesktopApp.Ui.Avalonia
 
         private void ExportSql_OnClick(object? sender, RoutedEventArgs e)
         {
-            RequirePresenter().ExportTrendsToSql();
+            RequirePresenter().ExportCategoriesToCsv();
         }
     }
 }
