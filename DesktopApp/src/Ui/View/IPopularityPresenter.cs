@@ -6,8 +6,8 @@ namespace DesktopApp.Ui.View
         void ExportTrendsToJson();
         void ExportCategoriesToCsv();
         void UpdateTrends();
-        void ImportTrendsFromXml();
-        void ImportTrendsFromJson();
-        void ImportCategoriesFromCsv();
+        void ImportTrendsFromXml(string path);
+        void ImportTrendsFromJson(string path);
+        void ImportCategoriesFromCsv(string path);
     }
 }

@@ -6,5 +6,6 @@ namespace DesktopApp.Service
     {
         void CreateCategory(Category category);
         bool CategoryExists(string categoryId);
+        void RemoveAllCategories();
     }
 }

@@ -35,6 +35,11 @@ namespace DesktopApp.Data
             ).First();
         }
 
+        public void RemoveAllCategories()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void AddCategoryTrend(string categoryId, Trend trend)
         {
             _database.Execute(
