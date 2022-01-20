@@ -1,6 +1,8 @@
 using System.IO;
 using DesktopApp.Ui.View;
 using System.Text.Json;
+using System.Xml.Serialization;
+using DesktopApp.Model;
 using DesktopApp.Service;
 
 namespace DesktopApp.Ui.Presenter
@@ -28,8 +30,14 @@ namespace DesktopApp.Ui.Presenter
 
         public void ExportTrendsToXml()
         {
-            throw new System.NotImplementedException();
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "export");
+            var categoryTrends = _trendRepository.FindAllCategoryTrends();
+            var xml = new XmlSerializer(categoryTrends.GetType());
+            path = Path.Combine(path, "categoriesTrends.xml");
             
+            System.IO.FileStream file = System.IO.File.Create(path);
+            xml.Serialize(file, categoryTrends);
+            file.Close();
         }
 
         public void ExportTrendsToJson()
@@ -57,6 +65,21 @@ namespace DesktopApp.Ui.Presenter
         {
             _dataService.PopulateCategories();
             _dataService.PopulateTags();
+        }
+
+        public void ImportTrendsFromXml(string path)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void ImportTrendsFromJson(string path)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void ImportCategoriesFromCsv(string path)
+        {
+            throw new System.NotImplementedException();
         }
 
         public void ImportTrendsFromXml()
