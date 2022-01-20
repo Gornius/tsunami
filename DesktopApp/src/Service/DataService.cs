@@ -46,15 +46,12 @@ namespace DesktopApp.Service
                 .Distinct()
                 .Select(categoryId => _categoryService.FetchCategoryById(categoryId))
                 .Select(category => _newsRepository.GetArticlesCount(new List<string>(new[] {category.Title})));
-
-            categoryIdsToCounts.Zip(articlesCounts)
+            
+            var newTrends = categoryIdsToCounts.Zip(articlesCounts)
                 .Select(MakeTrend)
-                .ToList()
-                .ForEach(entry =>
-                {
-                    var (id, trend) = entry;
-                    _trendRepository.AddCategoryTrend(id, trend);
-                });
+                .ToDictionary(tuple => tuple.Item1, tuple => tuple.Item2);
+            
+            _trendRepository.ReplaceCategoryTrends(newTrends);
         }
 
         public void PopulateTags()

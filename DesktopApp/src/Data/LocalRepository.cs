@@ -71,12 +71,17 @@ namespace DesktopApp.Data
 
         public void ReplaceCategoryTrends(Dictionary<string, Trend> categoryIdToTrend)
         {
-            throw new System.NotImplementedException();
+            const string query = "delete from categories_trend";
+            _database.Execute(query);
+            foreach (var (id, trend) in categoryIdToTrend)
+            {
+                AddCategoryTrend(id, trend);
+            }
         }
 
         public List<CategoryTrend> FindAllCategoryTrends()
         {
-            const string query = "select category_id, title, articles_count, videos_count, trend_date from categories inner join categories_trend ct on categories.id = ct.category_id;";
+            const string query = "select category_id, title, articles_count, videos_count, trend_date from categories inner join categories_trend ct on categories.id = ct.category_id where trend_date = CURRENT_DATE();";
 
             return _database.RetrieveData(query, ParseCategoryTrend, new List<MySqlParameter>());
         }
