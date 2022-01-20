@@ -100,5 +100,11 @@ namespace DesktopApp.Ui.Avalonia
                 RequirePresenter().ImportCategoriesFromCsv(path);
             });
         }
+
+        private void Update_OnClick(object? sender, RoutedEventArgs e)
+        {
+            RequirePresenter().UpdateTrends();
+            
+        }
     }
 }

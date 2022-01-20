@@ -24,8 +24,13 @@ namespace DesktopApp.Ui.Presenter
         public void Attach(ICategoriesPopularityView view)
         {
             _view = view;
+            RefreshView();
+        }
+
+        private void RefreshView()
+        {
             var categories = _trendRepository.FindAllCategoryTrends();
-            _view.ShowCategories(categories);
+            _view?.ShowCategories(categories);
         }
 
         public void ExportTrendsToXml()
@@ -65,6 +70,7 @@ namespace DesktopApp.Ui.Presenter
         {
             _dataService.PopulateCategories();
             _dataService.PopulateTags();
+            RefreshView();
         }
 
         public void ImportTrendsFromXml(string path)

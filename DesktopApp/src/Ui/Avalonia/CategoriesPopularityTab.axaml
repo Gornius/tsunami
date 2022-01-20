@@ -11,6 +11,7 @@
             <Button Name="ExportXml" Click="ExportXml_OnClick">Export to XML</Button>
             <Button Name="ExportSql" Click="ExportSql_OnClick">Export to SQL</Button>
             <Button Name="ImportCategories" Click="ImportCategories_OnClick">Import categories definitions</Button>
+            <Button Name="Update" Click="Update_OnClick">Update</Button>
         </StackPanel>
     </Grid>
 </UserControl>
