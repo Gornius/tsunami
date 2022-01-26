@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.IO;
 using DesktopApp.Ui.View;
 using System.Text.Json;
@@ -64,7 +66,25 @@ namespace DesktopApp.Ui.Presenter
 
         public void ExportCategoriesToCsv()
         {
-            _categoryRepository.GetAllCategories();
+            var categories = _categoryRepository.GetAllCategories();
+
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "export");
+            Directory.CreateDirectory(path);
+
+            path = Path.Combine(path, "categories.csv");
+            var fs = new FileStream(path, FileMode.Create, FileAccess.Write);
+            var sw = new StreamWriter(fs);
+
+            sw.WriteLine("id;title");
+            
+            foreach (var category in categories)
+            {
+                sw.WriteLine(category.Id + ';' + category.Title);
+            }
+            
+            sw.Flush();
+            sw.Close();
+            fs.Close();
         }
 
         public void UpdateTrends()
@@ -86,7 +106,8 @@ namespace DesktopApp.Ui.Presenter
 
         public void ImportCategoriesFromCsv(string path)
         {
-            throw new System.NotImplementedException();
+            var csvCategoryService = new CsvCategoryService(_categoryRepository);
+            csvCategoryService.LoadSource(path, ';');
         }
 
         public void ImportTrendsFromXml()
