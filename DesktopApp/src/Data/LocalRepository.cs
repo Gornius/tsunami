@@ -42,7 +42,9 @@ namespace DesktopApp.Data
 
         public List<Category> GetAllCategories()
         {
-            throw new System.NotImplementedException();
+            const string query = "select id, title from categories";
+
+            return _database.RetrieveData(query, ParseCategory, new List<MySqlParameter>());
         }
 
         public void AddCategoryTrend(string categoryId, Trend trend)
@@ -117,6 +119,15 @@ namespace DesktopApp.Data
                     VideosCount = record.GetInt32(3),
                     Date = record.GetDateTime(4)
                 }
+            };
+        }
+
+        private static Category ParseCategory(IDataRecord record)
+        {
+            return new Category
+            {
+                Id = record.GetString(0),
+                Title = record.GetString(1)
             };
         }
     }
