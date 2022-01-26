@@ -25,10 +25,12 @@ namespace DesktopApp.Service
         public void LoadSource(string path, char separator=';')
         {
             using var reader = new StreamReader(path);
+            
+            // Skip header line
+            reader.ReadLine();
+            
             while (!reader.EndOfStream)
             {
-                // Skip header line
-                reader.ReadLine();
                 var line = reader.ReadLine()?.Split(separator);
                 categoriesDic.Add(line[0], new Category()
                 {

@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using Avalonia.Threading;
 using Avalonia.VisualTree;
 using DesktopApp.Model;
 using DesktopApp.Service;
@@ -94,7 +97,7 @@ namespace DesktopApp.Ui.Avalonia
 
         private void ImportCategories_OnClick(object? sender, RoutedEventArgs e)
         {
-            Task.Run(async () =>
+            Dispatcher.UIThread.InvokeAsync(async () =>
             {
                 var path = await SelectFile("csv");
                 RequirePresenter().ImportCategoriesFromCsv(path);

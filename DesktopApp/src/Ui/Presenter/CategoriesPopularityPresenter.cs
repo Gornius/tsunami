@@ -134,6 +134,7 @@ namespace DesktopApp.Ui.Presenter
         {
             var csvCategoryService = new CsvCategoryService(_categoryRepository);
             csvCategoryService.LoadSource(path, ';');
+            RefreshView();
         }
     }
 }
