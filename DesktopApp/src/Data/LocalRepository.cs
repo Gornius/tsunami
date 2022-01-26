@@ -37,7 +37,7 @@ namespace DesktopApp.Data
 
         public void RemoveAllCategories()
         {
-            throw new System.NotImplementedException();
+            _database.Execute("delete from categories_trend; delete from categories;");
         }
 
         public List<Category> GetAllCategories()
