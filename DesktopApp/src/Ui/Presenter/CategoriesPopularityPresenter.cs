@@ -11,14 +11,15 @@ namespace DesktopApp.Ui.Presenter
     {
         private readonly ITrendRepository _trendRepository;
         private readonly DataService _dataService;
-        
+        private readonly ICategoryRepository _categoryRepository;
         
         private ICategoriesPopularityView? _view;
 
-        public CategoriesPopularityPresenter(ITrendRepository trendRepository, DataService dataService)
+        public CategoriesPopularityPresenter(ITrendRepository trendRepository, DataService dataService, ICategoryRepository categoryRepository)
         {
             _trendRepository = trendRepository;
             _dataService = dataService;
+            _categoryRepository = categoryRepository;
         }
 
         public void Attach(ICategoriesPopularityView view)
@@ -63,7 +64,7 @@ namespace DesktopApp.Ui.Presenter
 
         public void ExportCategoriesToCsv()
         {
-            throw new System.NotImplementedException();
+            _categoryRepository.GetAllCategories();
         }
 
         public void UpdateTrends()

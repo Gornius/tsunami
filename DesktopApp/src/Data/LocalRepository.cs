@@ -40,6 +40,11 @@ namespace DesktopApp.Data
             throw new System.NotImplementedException();
         }
 
+        public List<Category> GetAllCategories()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void AddCategoryTrend(string categoryId, Trend trend)
         {
             _database.Execute(
