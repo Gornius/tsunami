@@ -96,33 +96,44 @@ namespace DesktopApp.Ui.Presenter
 
         public void ImportTrendsFromXml(string path)
         {
-            throw new System.NotImplementedException();
+            // Get categories form xml
+            var xmlSerializer = new XmlSerializer(typeof(List<CategoryTrend>));
+
+            List<CategoryTrend> categoryTrends;
+            
+            using (Stream reader = new FileStream(path, FileMode.Open))
+            {
+                categoryTrends = (List<CategoryTrend>)xmlSerializer.Deserialize(reader);
+            }
+
+            // Prepare trend list
+            var trendsToUpdate = new Dictionary<String, Trend>();
+            foreach (var categoryTrend in categoryTrends)
+            {
+                trendsToUpdate.Add(categoryTrend.Category.Id, categoryTrend.Trend);
+            }
+            _trendRepository.ReplaceCategoryTrends(trendsToUpdate);
         }
 
         public void ImportTrendsFromJson(string path)
         {
-            throw new System.NotImplementedException();
+            // Get categories form json
+            string json = File.ReadAllText(path);
+            List<CategoryTrend> categoryTrends = JsonSerializer.Deserialize<List<CategoryTrend>>(json) ?? new List<CategoryTrend>();
+            
+            // Prepare trend list
+            var trendsToUpdate = new Dictionary<String, Trend>();
+            foreach (var categoryTrend in categoryTrends)
+            {
+                trendsToUpdate.Add(categoryTrend.Category.Id, categoryTrend.Trend);
+            }
+            _trendRepository.ReplaceCategoryTrends(trendsToUpdate);
         }
 
         public void ImportCategoriesFromCsv(string path)
         {
             var csvCategoryService = new CsvCategoryService(_categoryRepository);
             csvCategoryService.LoadSource(path, ';');
-        }
-
-        public void ImportTrendsFromXml()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void ImportTrendsFromJson()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void ImportCategoriesFromCsv()
-        {
-            throw new System.NotImplementedException();
         }
     }
 }
