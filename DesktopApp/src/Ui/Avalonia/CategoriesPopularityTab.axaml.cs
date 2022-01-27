@@ -109,5 +109,28 @@ namespace DesktopApp.Ui.Avalonia
             RequirePresenter().UpdateTrends();
             
         }
+
+        private void ImportJson_OnClick(object? sender, RoutedEventArgs e)
+        {
+            Dispatcher.UIThread.InvokeAsync(async () =>
+            {
+                var path = await SelectFile("json");
+                RequirePresenter().ImportTrendsFromJson(path);
+            });
+        }
+
+        private void ImportXml_OnClick(object? sender, RoutedEventArgs e)
+        {
+            Dispatcher.UIThread.InvokeAsync(async () =>
+            {
+                var path = await SelectFile("xml");
+                RequirePresenter().ImportTrendsFromXml(path);
+            });
+        }
+
+        private void Refresh_OnClick(object? sender, RoutedEventArgs e)
+        {
+            RequirePresenter().OnRefresh();
+        }
     }
 }

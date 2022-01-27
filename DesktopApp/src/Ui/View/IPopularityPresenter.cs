@@ -9,5 +9,6 @@ namespace DesktopApp.Ui.View
         void ImportTrendsFromXml(string path);
         void ImportTrendsFromJson(string path);
         void ImportCategoriesFromCsv(string path);
+        void OnRefresh();
     }
 }

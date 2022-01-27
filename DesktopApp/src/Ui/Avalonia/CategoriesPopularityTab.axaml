@@ -9,9 +9,12 @@
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <Button Name="ExportJson" Click="ExportJson_OnClick">Export to JSON</Button>
             <Button Name="ExportXml" Click="ExportXml_OnClick">Export to XML</Button>
-            <Button Name="ExportSql" Click="ExportSql_OnClick">Export to SQL</Button>
+            <Button Name="ImportJson" Click="ImportJson_OnClick">Import from JSON</Button>
+            <Button Name="ImportXml" Click="ImportXml_OnClick">Import from XML</Button>
+            <Button Name="ExportSql" Click="ExportSql_OnClick">Export categories definitions</Button>
             <Button Name="ImportCategories" Click="ImportCategories_OnClick">Import categories definitions</Button>
             <Button Name="Update" Click="Update_OnClick">Update</Button>
+            <Button Name="Refresh" Click="Refresh_OnClick">Refresh</Button>
         </StackPanel>
     </Grid>
 </UserControl>

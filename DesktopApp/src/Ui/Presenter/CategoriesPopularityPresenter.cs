@@ -113,6 +113,7 @@ namespace DesktopApp.Ui.Presenter
                 trendsToUpdate.Add(categoryTrend.Category.Id, categoryTrend.Trend);
             }
             _trendRepository.ReplaceCategoryTrends(trendsToUpdate);
+            RefreshView();
         }
 
         public void ImportTrendsFromJson(string path)
@@ -128,12 +129,18 @@ namespace DesktopApp.Ui.Presenter
                 trendsToUpdate.Add(categoryTrend.Category.Id, categoryTrend.Trend);
             }
             _trendRepository.ReplaceCategoryTrends(trendsToUpdate);
+            RefreshView();
         }
 
         public void ImportCategoriesFromCsv(string path)
         {
             var csvCategoryService = new CsvCategoryService(_categoryRepository);
             csvCategoryService.LoadSource(path, ';');
+            RefreshView();
+        }
+
+        public void OnRefresh()
+        {
             RefreshView();
         }
     }
