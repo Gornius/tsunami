@@ -6,6 +6,6 @@ import java.sql.SQLException;
 class Publisher {
     public static void main(String[] args) throws SQLException {
         var repository = new CategoryRepository();
-        Endpoint.publish("http://localhost:7789/category", new LocalCategoryInfoService(repository));
+        Endpoint.publish("http://category-api:7789/category", new LocalCategoryInfoService(repository));
     }
 }

@@ -1,0 +1,71 @@
+version: "3"
+services:
+  trend-api:
+    container_name: trend-api
+    hostname: trend-api
+    restart: always
+    build:
+      context: TrendApi
+      dockerfile: Dockerfile
+    ports:
+      - "7779:7779"
+    depends_on:
+      - tsunami-db
+    environment:
+      - WAIT_HOSTS=tsunami-db:3306
+    links:
+      - tsunami-db
+    networks:
+      - net-tsunami
+  category-api:
+    container_name: category-api
+    hostname: category-api
+    restart: always
+    build:
+      context: CategoryApi
+      dockerfile: Dockerfile
+    ports:
+      - "7789:7789"
+    depends_on:
+      - tsunami-db
+    environment:
+      - WAIT_HOSTS=tsunami-db:3306
+    links:
+      - tsunami-db
+    networks:
+      - net-tsunami
+#  gateway:
+#    container_name: gateway
+#    restart: always
+#    build:
+#      context: ApiGateway
+#      dockerfile: Dockerfile
+#    ports:
+#      - "7070:7070"
+#    depends_on:
+#      - category-api
+#      - trend-api
+#    environment:
+#      - WAIT_HOSTS=category-api:7789,trends-api:7779
+#    links:
+#      - category-api
+#      - trend-api
+#    networks:
+#      - net-tsunami
+  tsunami-db:
+    container_name: tsunami-db
+    image: mysql:5.7
+    volumes:
+      - dbdata:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=tsunami
+      - MYSQL_DATABASE=tsunami
+    networks:
+      - net-tsunami
+networks:
+  net-tsunami:
+    driver: bridge
+volumes:
+  dbdata:

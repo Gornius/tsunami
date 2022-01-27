@@ -10,7 +10,7 @@ public class TrendRepository {
 
     public TrendRepository() throws SQLException {
         connection = DriverManager
-                .getConnection("jdbc:mysql://localhost:3306/tsunami", "root", "tsunami");
+                .getConnection("jdbc:mysql://tsunami-db:3306/tsunami", "root", "tsunami");
 
     }
 

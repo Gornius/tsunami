@@ -35,3 +35,8 @@ task uberJar(type: Jar) {
         configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
     }
 }
+
+task run(type: JavaExec) {
+  classpath sourceSets.main.runtimeClasspath
+  main = mainClass
+}
