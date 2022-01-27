@@ -90,7 +90,7 @@ namespace DesktopApp.Ui.Presenter
         public void UpdateTrends()
         {
             _dataService.PopulateCategories();
-            _dataService.PopulateTags();
+            // _dataService.PopulateTags();
             RefreshView();
         }
 
