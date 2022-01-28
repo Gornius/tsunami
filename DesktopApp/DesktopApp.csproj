@@ -19,6 +19,9 @@
         <Content Include="../Assets/init.sql">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Include="../Assets/client_secrets.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <PackageReference Include="Google.Apis.YouTube.v3" Version="1.55.0.2449" />
     </ItemGroup>
     <ItemGroup>
